@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Waktu Tempuh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: grey;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: black;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .back-video{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        }
+
+        @media (min-aspect-ratio: 16/9){
+        .back-video{
+        width: 100%;
+        height: auto;
+        }
+        }
+
+        @media (max-aspect-ratio: 16/9){
+        .back-video{
+        width: auto;
+        height: 100%;
+        }
+}
+    </style>
+</head>
+<body>
+    <video autoplay loop muted plays-inline class="back-video">
+        <source src="background.mp4" type="video/mp4">
+    </video>
+    <h2>Kalkulator Waktu Tempuh</h2>
+    <h3>UAS FISIKA</h3>
+    <div class="container">
+        <label for="distance">Jarak (km):</label>
+        <input type="number" id="distance" placeholder="Mau Pergi Sejauh Apa?">
+        <label for="speed">Kecepatan (km/jam):</label>
+        <input type="number" id="speed" placeholder="Mau Berapa Kecepatan Nya?">
+        <button onclick="calculateTime()">Ayo Hitung</button>
+        <div id="result"></div>
+    </div>
+
+
+    <script>
+        function calculateTime() {
+            var distance = parseFloat(document.getElementById('distance').value);
+            var speed = parseFloat(document.getElementById('speed').value);
+
+            if (isNaN(distance) || isNaN(speed) || distance <= 0 || speed <= 0) {
+                alert('Masukkan angka yang valid untuk jarak dan kecepatan.');
+                return;
+            }
+
+            var time = distance / speed;
+            var hours = Math.floor(time);
+            var minutes = Math.floor((time - hours) * 60);
+
+            document.getElementById('result').innerHTML = `Butuh Waktu: ${hours} jam ${minutes} menit`;
+        }
+    </script>
+</body>
+</html>
